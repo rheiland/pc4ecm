@@ -383,6 +383,27 @@ class SubstrateTab(object):
 
         self.substrates_toggle.observe(substrates_toggle_cb)
 
+        #--------
+        self.ecm_vectors_toggle = Checkbox(
+            description='ECM orientations',
+            disabled=False,
+            value=True,
+#           layout=Layout(width=constWidth2),
+        )
+        def ecm_vectors_toggle_cb(b):
+            # self.update()
+            self.i_plot.update()
+            self.show_vectors = self.ecm_vectors_toggle.value
+            # if (self.vectors_toggle.value):
+            #     self.show_vectors = False
+            # else:
+            #     self.show_vectors = True
+
+        self.ecm_vectors_toggle.observe(ecm_vectors_toggle_cb)
+
+
+
+        #--------
         self.grid_toggle = Checkbox(
             description='grid',
             disabled=False,
@@ -428,7 +449,7 @@ class SubstrateTab(object):
                             flex_direction='row',
                             display='flex'))
         # row2b = Box( [self.substrates_toggle, self.grid_toggle], layout=Layout(border='1px solid black',
-        row2b = Box( [self.substrates_toggle], layout=Layout(border='1px solid black',
+        row2b = Box( [self.substrates_toggle, self.ecm_vectors_toggle], layout=Layout(border='1px solid black',
                             width='50%',
                             height='',
                             align_items='stretch',
@@ -1254,7 +1275,7 @@ class SubstrateTab(object):
 
         # Now plot the cells (possibly on top of the substrate)
         if (self.cells_toggle.value):
-            if (not self.substrates_toggle.value):
+            if (not self.substrates_toggle.value and not self.show_vectors):
                 # self.fig = plt.figure(figsize=(12, 12))
                 self.fig = plt.figure(figsize=(self.figsize_width_svg, self.figsize_height_svg))
             # self.plot_svg(frame)
