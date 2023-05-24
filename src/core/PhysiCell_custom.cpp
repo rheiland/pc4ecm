@@ -204,7 +204,7 @@ int Custom_Cell_Data::find_variable_index( std::string name )
 	auto out = name_to_index_map.find( name ); 
 	if( out != name_to_index_map.end() )
 	{ return out->second; }
-    std::cout << "\n\n----------------- Custom_Cell_Data::find_variable_index( std::string name ), name= " << name <<std::endl;
+    // std::cout << "\n\n----------------- Custom_Cell_Data::find_variable_index( std::string name ), name= " << name <<std::endl;
     // *(int*)0 = 0;
     // std::exit(1); //rwh
 	return -1; 
